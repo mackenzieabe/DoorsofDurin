@@ -22,12 +22,12 @@ function generatePassword() {
         pwLength = prompt("Between 8 and 128, how long would you like your password to be?")
     }
 
-
+// 
     var wantsUpper = confirm("Would you like uppercase letters?")
     var wantsLower = confirm("Would you like lowercase letters?")
     var wantsNumbers = confirm("Would you like numbers?")
     var wantsSpecialChar = confirm("Would you like special characters?")
-
+// 
     while (!wantsUpper && !wantsLower && !wantsNumbers && !wantsSpecialChar) {
         alert("You must choose at least one type of character")
         wantsUpper = confirm("Would you like uppercase letters?")
@@ -35,9 +35,25 @@ function generatePassword() {
         wantsNumbers = confirm("Would you like numbers?")
         wantsSpecialChar = confirm("Would you like special characters?")
     }
+// 
+    if (wantsUpper) {
+        passwordChars += allCharacters.uppercaseLetters
+    }
+    if (wantsLower) {
+        passwordChars += allCharacters.lowercaseLetters
+    }
+    if (wantsNumbers) {
+        passwordChars += allCharacters.numbers
+    }
+    if (wantsSpecialChar) {
+        passwordChars += allCharacters.specialCharacter
+    }
 
-    
-
+    console.log(passwordChars);
+// 
+    for (var i = 0; i < pwLength; i++) {
+        password += passwordChars.charAt(Math.floor(Math.random() * passwordChars.length))
+    }
 
     // return the password value
     return password
