@@ -7,17 +7,18 @@ var allCharacters = {
 }
 
 // Get references to the #generate element
-//generate refers to the button that we need clicked
+//Generate refers to the button that we need clicked
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-    // setting the password to be an empty string
+    // Setting the password to be an empty string
     var password = ""
     var passwordChars = ""
 
-    // ask the user how many characters they want in their password
+    //Ask the user how many characters they want in their password
     var pwLength = prompt("Between 8 and 128, how long would you like your password to be?")
     while (pwLength < 8 || pwLength > 128 || isNaN(pwLength)) {
+        //alerts the user if their password is less than 8 characters or greater than 128 characters and then prompts them again
         alert("Your password must be a number and can only be between 8 and 128 characters long")
         pwLength = prompt("Between 8 and 128, how long would you like your password to be?")
     }
@@ -27,7 +28,7 @@ function generatePassword() {
     var wantsLower = confirm("Would you like your password to have lowercase letters?")
     var wantsNumbers = confirm("Would you like your password to have numbers?")
     var wantsSpecialChar = confirm("Would you like your password to have special characters?")
-// confirms that the user is selecting characters that match with the answer they gave the previous prompt
+// confirms that the user is selecting characters that match with the answer they gave in the previous prompt
     while (!wantsUpper && !wantsLower && !wantsNumbers && !wantsSpecialChar) {
         alert("You must choose at least one type of character")
         wantsUpper = confirm("Would you like your password to have uppercase letters?")
@@ -35,7 +36,7 @@ function generatePassword() {
         wantsNumbers = confirm("Would you like your password to have numbers?")
         wantsSpecialChar = confirm("Would you like your password to have special characters?")
     }
-// 
+ //ensuring that whatever characters are chosen are the ones used
     if (wantsUpper) {
         passwordChars += allCharacters.uppercaseLetters
     }
@@ -48,8 +49,6 @@ function generatePassword() {
     if (wantsSpecialChar) {
         passwordChars += allCharacters.specialCharacter
     }
-
-    console.log(passwordChars);
 // generate random characters for user password 
     for (var i = 0; i < pwLength; i++) {
         password += passwordChars.charAt(Math.floor(Math.random() * passwordChars.length))
@@ -58,7 +57,6 @@ function generatePassword() {
     // return the password value
     return password
 }
-// Write password to the #password input
 
 function writePassword() {
     var password = generatePassword();
@@ -68,5 +66,4 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
